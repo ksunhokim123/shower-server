@@ -1,0 +1,19 @@
+.clientview {
+  margin-bottom: 10px;
+   .content {
+    height: 350px;
+  }
+  .editor {
+    position: relative;
+    z-index:1;
+    top: -350px;
+  }
+  .asdf {
+    position: relative;
+    z-index: 2;
+    left: -30px;
+    width:auto;
+    height: 350px;
+  }
+
+}
