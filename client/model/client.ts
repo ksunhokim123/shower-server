@@ -1,5 +1,7 @@
-import {  DocumentMap } from './documentmap';
+import {  Document } from './document';
 
 export interface Client {
-  documents: DocumentMap;
+  id: string;
+  name: string;
+  documents: Document[];
 }

@@ -1,5 +1,9 @@
 .clientview {
   margin-bottom: 10px;
+  .title {
+    display: inline-block;
+    width: 100%;
+  }
    .content {
     height: 350px;
   }
@@ -15,5 +19,7 @@
     width:auto;
     height: 350px;
   }
-
+}
+.unsubbutton {
+  float:right;
 }

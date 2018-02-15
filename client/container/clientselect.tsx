@@ -1,17 +1,16 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 
-import { Button, Input, Segment, Select } from 'semantic-ui-react';
-import { fetchClientID  } from '../action/fetch';
+import { Button, Input, Segment, Select, Icon } from 'semantic-ui-react';
+import { addSubsribe, fetchClientID  } from '../action/actions';
+
+import Idpw from '../idpw';
+import { IdpwModal } from './idpwmodal';
 import { State } from '../reducer';
 
-const options = [
-  { key: 'all', text: 'All', value: 'all' },
-  { key: 'articles', text: 'Articles', value: 'articles' },
-  { key: 'products', text: 'Products', value: 'products' },
-];
 
 const mapDispatchToProps = (dispatch) => ({
+  addSubsribe: (id: string, name: string) => { dispatch(addSubsribe(id, name)); },
   fetchIds: () => { dispatch(fetchClientID()); },
 });
 
@@ -21,15 +20,16 @@ const mapStateToProps = (state: State) => ({
 
 interface Props {
   ids: string[];
+  addSubsribe(id: string, name: string): void;
   fetchIds(): void;
 }
 
-interface SelectState {
+interface MyState {
   id: string;
   name: string;
 }
 
-class ClientSelectBase extends React.Component<Props, SelectState> {
+class ClientSelectBase extends React.Component<Props, MyState> {
   constructor(props) {
     super(props);
     this.state = {
@@ -38,8 +38,13 @@ class ClientSelectBase extends React.Component<Props, SelectState> {
     };
   }
 
-  public onSelectChange(e) {
-    this.setState({id: e.target.value});
+  public onSubmit(e) {
+    e.preventDefault();
+    this.props.addSubsribe(this.state.id, this.state.name);
+  }
+
+  public onSelectChange(e, {value}) {
+    this.setState({id: value});
   }
 
   public onInputChange(e) {
@@ -52,7 +57,7 @@ class ClientSelectBase extends React.Component<Props, SelectState> {
 
   public render() {
     return (
-      <Segment>
+      <div>
       <Input type='text' placeholder='name' action>
         <Select options={this.props.ids.map((id) => {
           return {key: id, text: id, value: id};
@@ -64,15 +69,20 @@ class ClientSelectBase extends React.Component<Props, SelectState> {
         value={this.state.name}
         onChange={this.onInputChange.bind(this)}
         />
-        <Button type='submit'>subscribe</Button>
+        <Button
+        color='twitter'
+        icon
+        as='div' labelPosition='right'
+        onClick={this.onSubmit.bind(this)}>
+        Subscribe
+        <Icon name='eye'/>
+        </Button>
       </Input>
-      </Segment>
+      </div>
     );
   }
 }
-/*
 
-()*/
 export const ClientSelect = connect(
   mapStateToProps,
   mapDispatchToProps,

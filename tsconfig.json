@@ -9,7 +9,7 @@
         "sourceMap": true,
         "strictNullChecks": true,
         "version": true,
-        "target": "ES5",
+        "target": "ES6",
         "jsx": "React"
     },
     "include": [

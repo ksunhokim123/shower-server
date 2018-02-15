@@ -1,12 +1,13 @@
 import * as React from 'react';
 
-import { ClientSelect } from './clientselect';
-import { ClientView } from './clientview';
+import { IdpwModal } from './idpwmodal';
+import { ClientViewContainer } from './clientviewcontainer';
 
 export const ClientContainer: React.StatelessComponent<{}> = (props) => {
   return (
     <div>
-      <ClientSelect/>
+      <IdpwModal/>
+      <ClientViewContainer/>
     </div>
   );
 };

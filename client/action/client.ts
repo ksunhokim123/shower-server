@@ -1,4 +1,4 @@
-import { ClientMap } from '../model';
+import { Document } from '../model';
 
 export enum TypeKeys {
   DOCUMENTS = 'client_document_success',
@@ -8,7 +8,9 @@ export enum TypeKeys {
 
 export interface DocumentsAction {
   type: TypeKeys.DOCUMENTS;
-  documents: ClientMap;
+  id: string;
+  name: string;
+  documents: Document[];
 }
 
 export interface IDAction {
