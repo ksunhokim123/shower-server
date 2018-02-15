@@ -22,6 +22,7 @@ type ClientResponse struct {
 
 func startAPI() {
 	routes.HandleFunc("/api/clients", use(retrieveClients, basicAuth)).Methods("GET")
+	routes.HandleFunc("/", corsHandler()).Methods("OPTIONS")
 	routes.HandleFunc("/api/clients/{id:[0-9]+}", use(getClient, basicAuth)).Methods("GET")
 }
 
@@ -30,6 +31,14 @@ func use(h http.HandlerFunc, middleware ...func(http.HandlerFunc) http.HandlerFu
 		h = m(h)
 	}
 	return h
+}
+func corsHandler() http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "text/html; charset=utf-8")
+		w.Header().Set("Access-Control-Allow-Headers", " authorization")
+		w.Header().Set("Access-Control-Allow-Origin", "*")
+		fmt.Println("asdad")
+	}
 }
 
 func basicAuth(h http.HandlerFunc) http.HandlerFunc {
