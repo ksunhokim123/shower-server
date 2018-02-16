@@ -13,7 +13,7 @@ func startListen() {
 	upgrader.CheckOrigin = func(r *http.Request) bool {
 		return true
 	}
-	routes.HandleFunc("/shower/listen", listen)
+	routes.HandleFunc("/listen", listen)
 }
 
 type ClientContainer []*Client

@@ -7,7 +7,7 @@ import Idpw from '../idpw';
 import { Document, Subscribe } from '../model';
 
 const apiDocuments = (id: string): Promise<string[]> => {
-  const membersURL = `http://sunho.kim/api/clients/` + id;
+  const membersURL = `http://sunho.kim/shower/api/clients/` + id;
   return fetch(membersURL, {
         method: 'GET',
         headers: {
@@ -39,7 +39,7 @@ export const fetchDocuments = (id: string, name: string) => (dispatch) => {
 };
 
 const apiClientID = (): Promise<string[]> => {
-  const membersURL = `http://sunho.kim/api/clients`;
+  const membersURL = `http://sunho.kim/shower/api/clients`;
   return fetch(membersURL, {
         method: 'GET',
         headers: {
