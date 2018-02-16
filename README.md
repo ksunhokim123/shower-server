@@ -13,7 +13,7 @@
 The reason why use github.com/ksunhokim123/shower-server/server instead of github.com/ksunhokim123/shower-server is to download go dependencies.
 
 ### go part
-Go to [GOPATH](https://github.com/golang/go/wiki/GOPATH)/github.com/ksunhokim123/shower-server/server and execute this command.
+Go to [GOPATH](https://github.com/golang/go/wiki/GOPATH)/github.com/ksunhokim123/shower-server/server/api.go and replace "user" of USERNAME and "pass" of PASSWORD with your wanted admin id and pw. And then go to .../server and execute this command.
 
     go build
 Then you can execute the server via

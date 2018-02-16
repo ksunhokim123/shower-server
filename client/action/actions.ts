@@ -3,12 +3,13 @@ import { Base64 } from 'js-base64';
 import { DocumentsAction, IDAction, RemoveAction as ClientRemoveAction, TypeKeys as ClientTypeKeys  } from './client';
 import { AddAction, RemoveAction as SubscribeRemoveAction, TypeKeys as SubscribeTypeKeys } from './subscribe';
 
+import { SERVER_ADDR } from '../constants';
 import Idpw from '../idpw';
 import { Document, Subscribe } from '../model';
 
 const apiDocuments = (id: string): Promise<string[]> => {
-  const membersURL = `http://sunho.kim/shower/api/clients/` + id;
-  return fetch(membersURL, {
+  const URL = SERVER_ADDR + '/api/clients/' + id;
+  return fetch(URL, {
         method: 'GET',
         headers: {
             Authorization: 'Basic ' + Base64.encode(Idpw.id + ':' + Idpw.pw),
@@ -39,7 +40,7 @@ export const fetchDocuments = (id: string, name: string) => (dispatch) => {
 };
 
 const apiClientID = (): Promise<string[]> => {
-  const membersURL = `http://sunho.kim/shower/api/clients`;
+  const membersURL = SERVER_ADDR + '/api/clients';
   return fetch(membersURL, {
         method: 'GET',
         headers: {
