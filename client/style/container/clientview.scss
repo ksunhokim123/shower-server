@@ -3,6 +3,9 @@
   .title {
     display: inline-block;
     width: 100%;
+    span {
+      line-height:36px;
+    }
   }
    .content {
     height: 350px;
@@ -10,14 +13,16 @@
   .editor {
     position: relative;
     z-index:1;
-    top: -350px;
+    top: -280px;
+    height: 300px;
+    overflow: scroll;
   }
   .asdf {
     position: relative;
     z-index: 2;
-    left: -30px;
+    left: -20px;
     width:auto;
-    height: 350px;
+    height: 280px;
   }
 }
 .unsubbutton {

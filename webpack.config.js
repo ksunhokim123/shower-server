@@ -16,7 +16,8 @@ module.exports = {
     context: resolve(__dirname, 'client'),
     devtool: 'cheap-module-source-map',
     devServer:{
-        contentBase: resolve(__dirname, 'dist')
+        contentBase: resolve(__dirname, 'dist'),
+        publicPath: '/assets/',
     },
     module: {
         rules:[{

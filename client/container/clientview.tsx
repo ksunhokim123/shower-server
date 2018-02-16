@@ -1,16 +1,14 @@
 import * as React from 'react';
+import Clipboard from 'react-clipboard.js';
 import { connect } from 'react-redux';
 
-import AceEditor from 'react-ace';
 import { Button, Container,  Header, Input, Segment, Select } from 'semantic-ui-react';
 import { removeClient, removeSubscribe  } from '../action/actions';
 
 import { Document } from '../model';
 
-import 'brace/mode/css';
-import 'brace/mode/html';
-import 'brace/mode/javascript';
-import 'brace/theme/tomorrow';
+import SyntaxHighlighter from 'react-syntax-highlighter/prism';
+import { coy } from 'react-syntax-highlighter/styles/prism';
 
 interface Props {
   id: string;
@@ -68,7 +66,9 @@ public onSelectChange(e, { value }) {
     return (
         <div className='clientview'>
           <Header as='div' attached='top' className='title'>
-            <span>{this.props.name}</span>
+            <span className='name'>{this.props.name}</span>
+            <span><Clipboard className='ui button unsubbutton'
+            data-clipboard-text={result.current ? result.current.content : '' }>copy</Clipboard></span>
             <span><Button className='unsubbutton' onClick={() => {this.props.removeSubsribe(this.props.id); }}>remove</Button></span>
           </Header>
           <Select
@@ -83,16 +83,11 @@ public onSelectChange(e, { value }) {
              result.exist ?
              <Segment attached stacked className='content'>
                <div className='asdf'> </div>
-               <AceEditor
-                 mode={result.type ? result.type : ''}
-                 theme='tomorrow'
-                 readOnly={true}
-                 highlightActiveLine={false}
-                 width='auto'
-                 height='300px'
-                 className='editor'
-                 value={result.current ? result.current.content : '' }
-               />
+               <div className='editor'>
+                 <SyntaxHighlighter language={result.type ? result.type : ''} style={coy}>
+                 {result.current ? result.current.content : '' }
+                 </SyntaxHighlighter>
+               </div>
            </Segment>
            : null
            }
