@@ -1,8 +1,9 @@
 import * as React from 'react';
+import { connect } from 'react-redux';
 
 import AceEditor from 'react-ace';
-import { Container, Button, Header, Input, Segment, Select } from 'semantic-ui-react';
-import { fetchClientID  } from '../action/actions';
+import { Button, Container,  Header, Input, Segment, Select } from 'semantic-ui-react';
+import { removeClient, removeSubscribe  } from '../action/actions';
 
 import { Document } from '../model';
 
@@ -15,13 +16,21 @@ interface Props {
   id: string;
   name: string;
   documents: Document[];
+  removeSubsribe(id: string): void;
 }
 
 interface MyState {
   seltitle: string;
 }
 
-export class ClientView extends React.Component<Props, MyState> {
+const mapDispatchToProps = (dispatch) => ({
+  removeSubsribe: (id: string) => {
+    dispatch(removeSubscribe(id));
+    dispatch(removeClient(id));
+  },
+});
+
+class ClientViewBase extends React.Component<Props, MyState> {
   constructor(props) {
     super(props);
     this.state = {
@@ -60,7 +69,7 @@ public onSelectChange(e, { value }) {
         <div className='clientview'>
           <Header as='div' attached='top' className='title'>
             <span>{this.props.name}</span>
-            <span><Button className='unsubbutton'>remove</Button></span>
+            <span><Button className='unsubbutton' onClick={() => {this.props.removeSubsribe(this.props.id); }}>remove</Button></span>
           </Header>
           <Select
           fluid
@@ -92,3 +101,7 @@ public onSelectChange(e, { value }) {
       );
   }
 }
+export const ClientView = connect(
+  null,
+  mapDispatchToProps,
+)(ClientViewBase);

@@ -25,6 +25,18 @@ export const ClientReducer = (state: ClientState = makeEmptyClientState()  , act
        }
        state.clients = state.clients.concat({ documents: action.documents, id: action.id, name: action.name });
       return state;
+    case TypeKeys.REMOVE:
+      for (let i = 0; i < state.clients.length; i ++) {
+        if (state.clients[i].id === action.id) {
+          return Object.assign({}, state, {
+            clients: [
+              ...state.clients.slice(0, i),
+              ...state.clients.slice(i + 1),
+            ],
+          });
+        }
+      }
+      return state;
     case TypeKeys.IDS:
       return {
         ...state,

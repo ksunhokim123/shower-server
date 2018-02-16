@@ -1,16 +1,15 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 
-import { Button, Input, Segment, Select, Icon } from 'semantic-ui-react';
-import { addSubsribe, fetchClientID  } from '../action/actions';
+import { Button,  Icon, Input, Segment, Select } from 'semantic-ui-react';
+import { addSubscribe, fetchClientID  } from '../action/actions';
 
 import Idpw from '../idpw';
-import { IdpwModal } from './idpwmodal';
 import { State } from '../reducer';
-
+import { IdpwModal } from './idpwmodal';
 
 const mapDispatchToProps = (dispatch) => ({
-  addSubsribe: (id: string, name: string) => { dispatch(addSubsribe(id, name)); },
+  addSubscribe: (id: string, name: string) => { dispatch(addSubscribe(id, name)); },
   fetchIds: () => { dispatch(fetchClientID()); },
 });
 
@@ -20,7 +19,7 @@ const mapStateToProps = (state: State) => ({
 
 interface Props {
   ids: string[];
-  addSubsribe(id: string, name: string): void;
+  addSubscribe(id: string, name: string): void;
   fetchIds(): void;
 }
 
@@ -40,7 +39,7 @@ class ClientSelectBase extends React.Component<Props, MyState> {
 
   public onSubmit(e) {
     e.preventDefault();
-    this.props.addSubsribe(this.state.id, this.state.name);
+    this.props.addSubscribe(this.state.id, this.state.name);
   }
 
   public onSelectChange(e, {value}) {

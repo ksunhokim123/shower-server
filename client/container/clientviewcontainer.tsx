@@ -30,7 +30,7 @@ class ClientViewContainerBase extends React.Component<Props, {}> {
   }
 
   public componentWillMount() {
-    setInterval(() => {this.props.fetchSubscribes(this.props.subscribes); }, 500);
+    setInterval(() => {this.props.fetchSubscribes(this.props.subscribes);  }, 500);
   }
 
   public render() {

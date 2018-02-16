@@ -1,7 +1,8 @@
 import * as React from 'react';
 
-import { IdpwModal } from './idpwmodal';
 import { ClientViewContainer } from './clientviewcontainer';
+import { IdpwModal } from './idpwmodal';
+
 
 export const ClientContainer: React.StatelessComponent<{}> = (props) => {
   return (

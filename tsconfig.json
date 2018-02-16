@@ -3,13 +3,14 @@
         "types":[
             "node"
         ],
+        "lib": ["es2015", "dom",  "es2017"],
         "module": "commonjs",
         "removeComments": true,
         "preserveConstEnums": true,
         "sourceMap": true,
         "strictNullChecks": true,
         "version": true,
-        "target": "ES6",
+        "target": "es5",
         "jsx": "React"
     },
     "include": [

@@ -66,18 +66,18 @@ export class IdpwModal extends React.Component<{}, State> {
             </Form>
           </Modal.Content>
           <Modal.Actions>
-            <Button color='black' onClick={() => {this.close()}}>
+            <Button color='black' onClick={() => {this.close(); }}>
               Close
             </Button>
-            <Button positive icon='checkmark' labelPosition='right' content="Login" onClick={() => {
+            <Button positive icon='checkmark' labelPosition='right' content='Login' onClick={() => {
               Idpw.id = this.state.id;
               Idpw.pw = this.state.pw;
             }} />
           </Modal.Actions>
         </Modal>
-        <Button className='login' circular icon='settings'   onClick={() => {this.show('inverted')}}></Button>
+        <Button className='login' circular icon='settings'   onClick={() => {this.show('inverted'); }}></Button>
         <ClientSelect/>
       </Segment>
-    )
+    );
   }
 }

@@ -2,6 +2,7 @@ import { Document } from '../model';
 
 export enum TypeKeys {
   DOCUMENTS = 'client_document_success',
+  REMOVE = 'client_remove',
   IDS = 'clients_ids_success',
   OTHER_ACTION = '__any_other_action_type__',
 }
@@ -11,6 +12,11 @@ export interface DocumentsAction {
   id: string;
   name: string;
   documents: Document[];
+}
+
+export interface RemoveAction {
+  type: TypeKeys.REMOVE;
+  id: string;
 }
 
 export interface IDAction {
@@ -24,5 +30,6 @@ export interface OtherAction {
 
 export type ClientAction =
    | DocumentsAction
+   | RemoveAction
    | IDAction
    | OtherAction;

@@ -1,7 +1,7 @@
 // TODO make api action call
 import { Base64 } from 'js-base64';
-import { DocumentsAction, IDAction, TypeKeys as ClientTypeKeys } from './client';
-import { AddAction, RemoveAction, TypeKeys as SubscribeTypeKeys } from './subscribe';
+import { DocumentsAction, IDAction, RemoveAction as ClientRemoveAction, TypeKeys as ClientTypeKeys  } from './client';
+import { AddAction, RemoveAction as SubscribeRemoveAction, TypeKeys as SubscribeTypeKeys } from './subscribe';
 
 import Idpw from '../idpw';
 import { Document, Subscribe } from '../model';
@@ -69,13 +69,18 @@ const fetchDocumentsComplete = (id2: string, name2: string, documents2: Document
   documents: documents2,
 });
 
-export const addSubsribe = (id2: string, name2: string): AddAction => ({
+export const addSubscribe = (id2: string, name2: string): AddAction => ({
   type: SubscribeTypeKeys.ADD,
   id: id2,
   name: name2,
 });
 
-export const removeSubscribe = (id2: string): RemoveAction => ({
+export const removeSubscribe = (id2: string): SubscribeRemoveAction => ({
   type: SubscribeTypeKeys.REMOVE,
+  id: id2,
+});
+
+export const removeClient = (id2: string): ClientRemoveAction => ({
+  type: ClientTypeKeys.REMOVE,
   id: id2,
 });
