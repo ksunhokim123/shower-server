@@ -24,7 +24,7 @@ Then you can execute the server via
 Go to [GOPATH](https://github.com/golang/go/wiki/GOPATH)/github.com/ksunhokim123/shower-server/client/constant.ts. And replace **http://sunho.kim/shower** with your ip address or domain.  And then goto .../client directory and execute this commands.
 
     npm install
-    npx webpack -p --config webpack.config.prod.config
+    npx webpack -p --config webpack.config.prod.js
 Then you should see **dist** directory. You can simply run **dist/index.html** or provide the whole directory via nginx, apache or any other web servers.
 
 ### Setting the client
