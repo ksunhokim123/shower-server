@@ -15,7 +15,7 @@
 The reason why use github.com/ksunhokim123/shower-server/server instead of github.com/ksunhokim123/shower-server is to download go dependencies.
 
 ### go part
-Go to [GOPATH](https://github.com/golang/go/wiki/GOPATH)/github.com/ksunhokim123/shower-server/server/api.go and replace "user" of USERNAME and "pass" of PASSWORD with your wanted admin id and pw. And then go to .../server and execute this command.
+Go to [GOPATH](https://github.com/golang/go/wiki/GOPATH)/src/github.com/ksunhokim123/shower-server/server/api.go and replace "user" of USERNAME and "pass" of PASSWORD with your wanted admin id and pw. And then go to .../server and execute this command.
 
     go build
 Then you can execute the server via
@@ -23,7 +23,7 @@ Then you can execute the server via
     ./server
 
 ### js part
-Go to [GOPATH](https://github.com/golang/go/wiki/GOPATH)/github.com/ksunhokim123/shower-server/client/constant.ts. And replace **http://sunho.kim/shower** with your ip address or domain.  And then goto .../client directory and execute this commands.
+Go to [GOPATH](https://github.com/golang/go/wiki/GOPATH)/src/github.com/ksunhokim123/shower-server/client/constant.ts. And replace **http://sunho.kim/shower** with your ip address or domain.  And then goto .../client directory and execute this commands.
 
     npm install
     npx webpack -p --config webpack.config.prod.js
