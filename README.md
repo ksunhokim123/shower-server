@@ -2,6 +2,8 @@
 # shower-server
 🚿 shower server
 
+<img src="screenshot.png"/>
+
 ## Brief explanantion
  - **server** directory includes a back-end server made with go. It supports recieving data from clients(atom pugin) and provides an api for administration.
  - **client** directory includes an administration client made with typescript which supports monitoring clients connected to the server.
