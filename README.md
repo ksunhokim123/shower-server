@@ -1,6 +1,6 @@
 
 # Introduction
-🚿 A simple code monitoring web system. 
+🚿 A web simple code monitoring system. 
 
 <img src="screenshot.png"/>
 
