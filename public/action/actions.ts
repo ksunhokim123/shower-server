@@ -3,20 +3,17 @@ import { Base64 } from 'js-base64';
 import { DocumentsAction, IDAction, RemoveAction as ClientRemoveAction, TypeKeys as ClientTypeKeys  } from './client';
 import { AddAction, RemoveAction as SubscribeRemoveAction, TypeKeys as SubscribeTypeKeys } from './subscribe';
 
-import { SERVER_ADDR } from '../constants';
 import Idpw from '../idpw';
 import { Document, Subscribe } from '../model';
 
 const apiDocuments = (id: string): Promise<string[]> => {
-  const URL = SERVER_ADDR + '/api/clients/' + id;
-  return fetch(URL, {
+  return fetch('api/clients/' + id, {
         method: 'GET',
         headers: {
             Authorization: 'Basic ' + Base64.encode(Idpw.id + ':' + Idpw.pw),
         },
        })
-    .then((response) => (response.json()))
-    .then((json) => (json.data));
+    .then((response) => (response.json()));
 };
 
 export const fetchSubscribes = (subs: Subscribe[]) => (dispatch) => {
@@ -28,7 +25,7 @@ export const fetchSubscribes = (subs: Subscribe[]) => (dispatch) => {
 export const fetchDocuments = (id: string, name: string) => (dispatch) => {
   apiDocuments(id)
   .then((data: object) => {
-    let documents: Document[] = [];
+    const documents: Document[] = [];
     for (const key of Object.keys(data)) {
       documents.push({
         title: key,
@@ -40,15 +37,13 @@ export const fetchDocuments = (id: string, name: string) => (dispatch) => {
 };
 
 const apiClientID = (): Promise<string[]> => {
-  const membersURL = SERVER_ADDR + '/api/clients';
-  return fetch(membersURL, {
+  return fetch('api/clients', {
         method: 'GET',
         headers: {
             Authorization: 'Basic ' + Base64.encode(Idpw.id + ':' + Idpw.pw),
         },
        })
-    .then((response) => (response.json()))
-    .then((json) => (json.clients));
+    .then((response) => (response.json()));
 };
 
 export const fetchClientID = () => (dispatch) => {
@@ -58,22 +53,22 @@ export const fetchClientID = () => (dispatch) => {
   });
 };
 
-const fetchIDsComplete = (ids2: string[]): IDAction => ({
+const fetchIDsComplete = (ids: string[]): IDAction => ({
   type: ClientTypeKeys.IDS,
-  ids: ids2,
+  ids,
 });
 
-const fetchDocumentsComplete = (id2: string, name2: string, documents2: Document[]): DocumentsAction => ({
+const fetchDocumentsComplete = (id: string, name: string, documents: Document[]): DocumentsAction => ({
   type: ClientTypeKeys.DOCUMENTS,
-  id: id2,
-  name: name2,
-  documents: documents2,
+  id,
+  name,
+  documents,
 });
 
-export const addSubscribe = (id2: string, name2: string): AddAction => ({
+export const addSubscribe = (id: string, name: string): AddAction => ({
   type: SubscribeTypeKeys.ADD,
-  id: id2,
-  name: name2,
+  id,
+  name,
 });
 
 export const removeSubscribe = (id2: string): SubscribeRemoveAction => ({

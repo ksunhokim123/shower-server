@@ -2,7 +2,7 @@
   "name": "shower-server",
   "version": "1.0.0",
   "description": "abcd",
-  "main": "client/index.tsx",
+  "main": "public/index.tsx",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -49,9 +49,9 @@
     "uglifyjs-webpack-plugin": "^1.1.8"
   },
   "devDependencies": {
-    "fuse-box": "^3.1.3",
+    "fuse-box": "^3.4.0",
     "html-webpack-plugin": "^2.30.1",
-    "node-sass": "^4.7.2",
+    "node-sass": "^4.9.2",
     "sass-loader": "^6.0.6",
     "typescript": "^2.7.1",
     "webpack": "^3.11.0",

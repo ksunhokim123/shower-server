@@ -8,12 +8,13 @@ module.exports = {
     ],
     output:{
         filename: 'bundle.js',
-        path: resolve(__dirname, 'dist')
+        path: resolve(__dirname, 'dist'),
+        publicPath: 'assets/'
     },
     resolve:{
         extensions: ['.js', '.jsx', '.ts', '.tsx', '.css']
     },
-    context: resolve(__dirname, 'client'),
+    context: resolve(__dirname, 'public'),
     devtool: 'cheap-module-source-map',
     devServer:{
         contentBase: resolve(__dirname, 'dist'),
@@ -34,6 +35,5 @@ module.exports = {
               loader: "file-loader?name=imgs/[hash].[ext]"
             }
         ]
-    },
-    plugins: [new HtmlWebpackPlugin()]
+    }
 };

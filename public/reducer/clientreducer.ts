@@ -13,17 +13,23 @@ const makeEmptyClientState = (): ClientState => ({
 
 export const ClientReducer = (state: ClientState = makeEmptyClientState()  , action: ClientAction): ClientState => {
   switch (action.type) {
-    case TypeKeys.DOCUMENTS :
-      for (let i : number = 0; i < state.clients.length; i ++) {
+    case TypeKeys.DOCUMENTS:
+      for (let i = 0; i < state.clients.length; i ++) {
         if (state.clients[i].id === action.id) {
-          let arr: Client[] = [...state.clients];
+          const arr = [...state.clients];
           arr[i] = {id: action.id, name: action.name, documents: action.documents };
           return Object.assign({}, state, {
             clients: arr,
           });
         }
-       }
-       state.clients = state.clients.concat({ documents: action.documents, id: action.id, name: action.name });
+      }
+      state.clients = state.clients.concat(
+         {
+           documents: action.documents,
+           id: action.id,
+           name: action.name,
+         },
+      );
       return state;
     case TypeKeys.REMOVE:
       for (let i = 0; i < state.clients.length; i ++) {

@@ -14,7 +14,7 @@
         "jsx": "React"
     },
     "include": [
-        "client/**/*"
+        "public/**/*"
     ],
     "exclude":[
         "node_modules",

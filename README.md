@@ -1,34 +1,72 @@
 
 # Introduction
-🚿 A web simple code monitoring system. 
+🚿 A web simple code monitoring system.
 
 <img src="screenshot.png"/>
 
 # Brief explanantion
  - **server** directory includes a back-end server made with go. It supports recieving data from clients(atom pugin) and provides an api for administration.
  - **client** directory includes an administration client made with typescript which supports monitoring clients connected to the server.
-# Installation
 
-## initial
+# Running the server
 
-    go get github.com/ksunhokim123/shower-server/server
-The reason why use github.com/ksunhokim123/shower-server/server instead of github.com/ksunhokim123/shower-server is to download go dependencies.
+## The Docker way
 
-## go part
-Go to [GOPATH](https://github.com/golang/go/wiki/GOPATH)/src/github.com/ksunhokim123/shower-server/server/api.go and replace "user" of USERNAME and "pass" of PASSWORD with your wanted admin id and pw. And then go to .../server and execute this command.
+### Prerequisites
+ - docker
 
-    go build
-Then you can execute the server via
+### Guide
 
-    ./server
+Run the command below.
 
-## js part
-Go to [GOPATH](https://github.com/golang/go/wiki/GOPATH)/src/github.com/ksunhokim123/shower-server/client/constant.ts. And replace **http://sunho.kim/shower** with your ip address or domain.  And then goto .../client directory and execute this commands.
+```
+docker run -e USER=changeme -e PASS=changeme -p 5697:5697 ksunhokim/shower-server
+```
 
-    npm install
-    npx webpack -p --config webpack.config.prod.js
-Then you should see **dist** directory. You can simply run **dist/index.html** or provide the whole directory via nginx, apache or any other web servers.
+Alternatively, you can build the image from Dockerfile.
 
-## Setting the client
+```
+git clone https://github.com/sunho/shower-server
+cd shower-server
+docker build -t shower-server . && docker run -e USER=changeme -e PASS=changeme -p 5697:5697 -it shower-server
+```
 
-Now you can download **code-shower** package in your atom and assign your server address with **packages>Code Shower>set server**.
+Now open http://127.0.0.1:5697 in your favorite browser. You will see a tidy and shiny administration client.
+
+## The standard way
+
+### Prerequisites
+ - go compiler
+ - npm
+
+### Guide
+Run the command below.
+
+```
+go get github.com/sunho/shower-server
+```
+
+This will clone the repo and download every go dependency. Now you have to build the frontend or adiministration client.
+
+```
+cd $GOPATH/src/github.com/sunho/shower-server
+npm install
+npx webpack -p --config webpack.config.prod.js
+```
+
+After the build was completed, you should see dist folder full of html/js/css files. Now you can run the server.
+
+```
+export USER=changeme
+export PASS=changeme
+go build
+./shower-server
+```
+
+The environment variables USER and PASS are going to be used as admin username and password for administarion client. If you run the server directly from the host, this isn't really safe, because every process running on the host can access it. Thus if you're serious, you must use Docker or write a script so that the username and password wouldn't be exposed.
+
+Now open http://127.0.0.1:5697 in your favorite browser. You will see a tidy and shiny administration client.
+
+# Connecting to the server
+
+Install Atom. And then, install "code-shower" package([guide](https://flight-manual.atom.io/using-atom/sections/atom-packages/)). Open edit\>Config... and replace "wss://sunho.kim/shower" with "ws://127.0.0.1:5697" Finally, open packages\>Code Shower\>reload. Now if you edit some arbitrary file, it will be shown in the administarion client.

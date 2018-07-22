@@ -9,12 +9,13 @@ module.exports = {
     ],
     output:{
         filename: 'bundle.js',
-        path: resolve(__dirname, 'dist')
+        path: resolve(__dirname, 'dist'),
+        publicPath: '/assets/'
     },
     resolve:{
         extensions: ['.js', '.jsx', '.ts', '.tsx', '.css']
     },
-    context: resolve(__dirname, 'client'),
+    context: resolve(__dirname, 'public'),
     module: {
         rules:[{
                 test: /\.(ts|tsx)$/,
@@ -34,13 +35,12 @@ module.exports = {
             }
         ]
     },
-    plugins: [new HtmlWebpackPlugin({
-      title: "code-shower-admin"
-      }),
-      new webpack.LoaderOptionsPlugin({
-        minimize: true,
-        debug: false,
-      }),
-      new webpack.optimize.UglifyJsPlugin(),
-      new ExtractTextPlugin('bundle.css')]
+    plugins: [
+		new webpack.LoaderOptionsPlugin({
+			minimize: true,
+			debug: false,
+		}),
+		new webpack.optimize.UglifyJsPlugin(),
+		new ExtractTextPlugin('bundle.css')
+	]
 };
