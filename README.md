@@ -5,12 +5,12 @@
 <img src="screenshot.png"/>
 
 # Brief explanantion
- - **server** directory includes a back-end server made with go. It supports recieving data from clients(atom pugin) and provides an api for administration.
- - **client** directory includes an administration client made with typescript which supports monitoring clients connected to the server.
+ - **/*.go** is a back-end server. It supports recieving data from clients(atom pugin) and provides an api for administration.
+ - **public** directory includes an administration client made with typescript which supports monitoring clients connected to the server.
 
 # Running the server
 
-## The Docker way
+## Docker way
 
 ### Prerequisites
  - docker
@@ -33,7 +33,7 @@ docker build -t shower-server . && docker run -e USER=changeme -e PASS=changeme 
 
 Now open http://127.0.0.1:5697 in your favorite browser. You will see a tidy and shiny administration client.
 
-## The standard way
+## Standard way
 
 ### Prerequisites
  - go compiler
