@@ -63,7 +63,7 @@ go build
 ./shower-server
 ```
 
-The environment variables USER and PASS are going to be used as admin username and password for administarion client. If you run the server directly from the host, this isn't really safe, because every process running on the host can access it. Thus if you're serious, you must use Docker or write a script so that the username and password wouldn't be exposed.
+The environment variables USER and PASS are going to be used as admin username and password for administarion client. Running the server in this way isn't really safe, because every process running on the host can access it. Thus if you're serious, you must use Docker or write a script so that the username and password wouldn't be exposed.
 
 Now open http://127.0.0.1:5697 in your favorite browser. You will see a tidy and shiny administration client.
 
